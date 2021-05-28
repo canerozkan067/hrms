@@ -8,6 +8,10 @@ import com.canerbeyza.hrms.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 @Service
 public class JobSeekerService {
 
@@ -32,5 +36,9 @@ public class JobSeekerService {
 
         jobSeekerRepository.save(jobSeeker);
 
+    }
+
+    public List<JobSeekerDto> getAllJobSeekers() {
+        return jobSeekerRepository.findAll().stream().map(JobSeekerDto::new).collect(Collectors.toList());
     }
 }
